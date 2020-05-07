@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :products
+  root 'products#index'
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions"}
   devise_for :admins, path: 'admins', controllers: { sessions: "admins/sessions"}
   # eg. http://localhost:3000/admins/sign_in
