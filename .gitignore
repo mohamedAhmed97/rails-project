@@ -33,5 +33,3 @@ yarn-debug.log*
 #ignore DB
 /config/database.yml
 
-#ignore schema.rb
-/db/schema.rb
