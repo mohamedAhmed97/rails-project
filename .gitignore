@@ -30,5 +30,8 @@
 yarn-debug.log*
 .yarn-integrity
 
-#ignor DB
+#ignore DB
 /config/database.yml
+
+#ignore schema.rb
+/db/schema.rb
