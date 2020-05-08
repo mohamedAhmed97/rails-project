@@ -25,7 +25,21 @@
         <td><%= product.brand_id %></td>
         <td><%= product.category_id %></td>
         <td><%= link_to 'Show', shop_path(product) %></td>
-     
+
+        <td>
+
+        
+        <%= form_for @cart_item, remote: true  do |f|%>
+        <%= f.hidden_field :product_id, :value => product.id %>
+        <%= f.number_field :quantity, :value => 1, :min =>  1%>
+        <%= f.submit "Add to Card "%>
+
+
+        <% end %>
+      </td>
+
+
+
       </tr>
     <% end %>
   </tbody>
@@ -33,4 +47,5 @@
 
 <br>
 
+<%= link_to"#{current_cart.cart_items.size} items with a value of #{current_cart.subtotal }$", cards_path%>
 
