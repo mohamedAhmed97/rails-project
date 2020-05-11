@@ -61,6 +61,8 @@
 
 <br>
 <%if user_signed_in?%>
-<%= link_to"#{current_cart.cart_items.size} items with a value of #{current_cart.subtotal }$", carts_path%>
+<div id="cart">
+  <%= render 'carts/cart'%>
+</div>
 <% end %>
 
