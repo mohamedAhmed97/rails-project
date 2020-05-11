@@ -1,7 +1,7 @@
 class Cart < ApplicationRecord
     has_many :cart_items
     before_save :set_subtotal
-    belongs_to :user
+    
 
 
 
