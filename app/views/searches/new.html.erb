@@ -1,0 +1,25 @@
+<h1>Filter By</h1>
+
+<%= form_for @search, html: {class: "pure-form"} do |s| %>
+    <div class="field">
+        <%= s.label :keywords %><br />
+        <%= s.text_field :keywords %>
+    </div>
+    <div class="field">
+        <%= s.label :category_id %><br />
+        <%= s.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true %>
+    </div>
+    <div class="field">
+        <%= s.label :brand_id %><br />
+        <%= s.collection_select :brand_id, Brand.order(:name), :id, :name,  include_blank: true %>
+    </div>
+    <div class="field">
+        <%= s.label :price, "Price" %><br />
+        <%= s.text_field :price, size: 10 %>
+    </div>
+    <div class="actions"><%= s.submit "Search", class: "btn btn-success" %></div>
+<% end %>   
+
+<a><%= link_to 'Back To Home', products_path %></a>
+
+

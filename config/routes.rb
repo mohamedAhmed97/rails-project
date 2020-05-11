@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :brands
   resources :categories
+  resources :searches
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'carts/show'

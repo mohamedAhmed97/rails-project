@@ -15,6 +15,7 @@
 <% end %>
 
 <%if user_signed_in?%>
+<p><%= link_to "Filter By", new_search_path %></p>
 <%= form_tag products_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search], placeholder: "Search" %>
   <%= submit_tag "Search" %>
