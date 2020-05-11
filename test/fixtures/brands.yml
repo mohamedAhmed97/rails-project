@@ -2,6 +2,14 @@
 
 one:
   name: MyString
+<<<<<<< HEAD
 
 two:
   name: MyString
+=======
+  category: one
+
+two:
+  name: MyString
+  category: two
+>>>>>>> f16558d41a2ace0702262be2f9c4dbe4b90a279e

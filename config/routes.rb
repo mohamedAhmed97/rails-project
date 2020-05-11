@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :brands
+  resources :categories
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'cards/show'
+  get 'carts/show'
   resources :products
   resources :cart_items
-  resource  :cards, only:[:show]
+  resource  :carts, only:[:show]
   root 'products#index'
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions"}
   devise_for :admins, path: 'admins', controllers: { sessions: "admins/sessions"}
