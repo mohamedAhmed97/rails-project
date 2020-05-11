@@ -18,6 +18,9 @@
     <%= text_field_tag :search, params[:search], placeholder: "Search products by title, description",
      class: "form-control", style: "width:280px !important;" %>
     <%= submit_tag "Search", :class => 'btn btn-info m-2',:name => nil%>
+    <%if user_signed_in?%>
+      <%= link_to "Filter By", new_search_path , :class => 'btn btn-info m-2' %>
+    <% end %>
   <% end %>
   </form>
     <div style="padding-left: 10px;">

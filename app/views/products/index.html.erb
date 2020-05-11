@@ -1,49 +1,40 @@
 <p id="notice"><%= notice %></p>
-<h1>Products</h1>
-<%if user_signed_in?%>
-<p><%= link_to "Filter By", new_search_path %></p>
-<% end %>
-    <% if can? :manage ,@product%>
+
+
+<% if can? :manage ,@product%>
 <%= link_to 'New Product', new_product_path %>
 <% end %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th>Brand</th>
-      <th>Category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.title %></td>
-        <td><%= product.price %></td>
-        <td><%= product.description %></td>
-        <td><%= product.brand_id %></td>
-        <td><%= product.category_id %></td>
-        <td><%= link_to 'Show', product_path(product) %></td>
+
+<% @products.in_groups_of(4, false).each do |group| %>
+  <div class='row border border-info'>
+    <% group.each do |product| %>
+      <div class='col-md-3'>
+      <div class='card'>
+       <div class="card-body">
+        <h3><%= product.title %></h3><br />
+        <div>Description: <%= sanitize(product.description) %></div><br />
+        <div>Brand: <%= sanitize(product.brand.name) %></div><br />
+        <div>Category: <%= sanitize(product.category.name) %></div><br />
+        <div>Price: <%= number_to_currency(product.price) %></div><br />
+        <div><%= link_to 'Show Details', product_path(product),  class: 'btn btn-info btn-sm float-right'%></div>
         <% if can? :manage ,product%>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <div><%= link_to 'Edit', edit_product_path(product) %></div>
+        <div><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></div>
         <% end %>
-        <%if user_signed_in?%>
-        <td>
-          <%= form_for @cart_item, remote: true  do |f|%>
+        
+        <%= form_for @cart_item, remote: true  do |f|%>
           <%= f.hidden_field :product_id, :value => product.id %>
-          <%= f.number_field :quantity, :value => 1, :min =>  1%>
-          <%= f.submit "Add to Cart "%>
+          <%= f.number_field :quantity, style: "width:50px !important;" , :value => 1, :min =>  1%>
+          <%= f.submit "Add to Cart ", class: 'btn btn-success btn-sm'%>
           <% end %>
-        </td>
-        <% end %>
-      </tr>
+          
+      </div>
+      </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
 
 <br>
 <%if user_signed_in?%>
