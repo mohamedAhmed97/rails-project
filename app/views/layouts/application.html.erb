@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Testproject</title>
+    <title>E-commerce</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,36 @@
   </head>
 
   <body>
+  <nav class="navbar navbar-inverse bg-light border border-primary">
+  <a class="navbar-brand btn btn-outline-info" href="/">E-commerce</a>
+  
+  <form class="form-inline">
+  <%= form_tag(products_path, :method => "get", id: "search-form", html: {class: 'form-group'}) do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search products by title, description",
+     class: "form-control", style: "width:280px !important;" %>
+    <%= submit_tag "Search", :class => 'btn btn-info m-2',:name => nil%>
+  <% end %>
+  </form>
+    <div style="padding-left: 10px;">
+    <% if current_user %>
+      <button class="btn btn-outline-danger" type="button">
+      <%= link_to 'Sign out', destroy_user_session_path, method: :delete %></button>
+
+    <% else %>
+
+      <button class="btn btn-outline-success" type="button">
+      <%= link_to 'Sign up', new_user_registration_path %></button>
+      <button class="btn btn-outline-success" type="button">
+      <%= link_to 'Sign in', new_user_session_path %></button>
+    <% end %>
+      
+    </div>
+    
+</nav>
+
     <%= yield %>
+ 
   </body>
 </html>
+
+
