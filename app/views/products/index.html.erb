@@ -17,10 +17,12 @@
         <div>Brand: <%= sanitize(product.brand.name) %></div><br />
         <div>Category: <%= sanitize(product.category.name) %></div><br />
         <div>Price: <%= number_to_currency(product.price) %></div><br />
-        <div><%= link_to 'Show Details', product_path(product),  class: 'btn btn-info btn-sm float-right'%></div>
+        <div><%= link_to 'Show Details', product_path(product), 
+        class: 'btn btn-info btn-sm float-right'%></div>
         <% if can? :manage ,product%>
         <div><%= link_to 'Edit', edit_product_path(product) %></div>
-        <div><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        <div><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
         <% end %>
         
         <%= form_for @cart_item, remote: true  do |f|%>
