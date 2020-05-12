@@ -1,5 +1,6 @@
 class Cart < ApplicationRecord
     has_many :cart_items
+    has_many :orders
     before_save :set_subtotal
     
 
