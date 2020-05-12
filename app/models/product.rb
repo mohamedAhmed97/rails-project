@@ -3,6 +3,7 @@ class Product < ApplicationRecord
     belongs_to :brand
     has_many :cart_items
     has_one_attached :image
+    
 
     def self.search(search)
         if search
