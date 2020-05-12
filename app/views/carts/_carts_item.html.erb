@@ -1,26 +1,24 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<div class="container mt-3 border border-info">
+    <% @cart_items.each do |item| %>
+        <div class="row">
+            <div class="col-md-3">
+                <div><%= item.product.title %></div>
+                <div>$<%= item.product.price %></div>
+            </div>
+        </div>
+        <%= form_for item, remote: true do |f| %>
 
+            <%= f.hidden_field :product_id, :value => item.product.id %>
+            <%= f.number_field :quantity, :value => item.quantity.to_i %>
+            <%= f.submit "Update Cart" ,class: 'btn btn-success btn-sm '%>
 
-<% @cart_items.each do |item| %>
+            <%= link_to "Remove Item", cart_item_path(item),class: 'btn btn-danger btn-sm ',
+            method: :delete, remote: true %>
 
-    <h3><%= item.product.title %></h3>
-    <h3><%= item.product.price %></h3>
-
-    <%= form_for item, remote: true do |f| %>
-
-        <%= f.hidden_field :product_id, :value => item.product.id %>
-        <%= f.number_field :quantity, :value => item.quantity.to_i %>
-        <%= f.submit "Update Cart" %>
-
-
-        <%= link_to "Remove Item", cart_item_path(item), method: :delete, remote: true %>
-
-
+        <% end %>
+            <div>Subtotal: $<%= item.total %></div>
     <% end %>
-        <h2>Subtotal: <%= item.total %></h2>
+</div>
 
-
-<% end %>
-
-<h3>Your current cart value has a Subtotal of <%= current_cart.subtotal %></h3>
+<div class="text-center bg-warning m-3 p-1">Your current cart value has a Subtotal of 
+<%= current_cart.subtotal %></div>

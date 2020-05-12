@@ -1,29 +1,36 @@
-<h2>Sign up</h2>
+<div class="container">
 
+<h2 class="bg-success p-3 text-center mt-4 font-weight-bold">Sign up</h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="row border border-success">
+      <div class="col-md-12 p-3">
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
+  <div class="field m-3">
+    <span class="font-weight-bold"><%= f.label :email %></span><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="field m-3">
+    <span class="font-weight-bold"><%= f.label :password %></span>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+  <div class="field m-3">
+    <span class="font-weight-bold"><%= f.label :password_confirmation %></span><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions m-3">
+    <%= f.submit "Sign up", :class => 'btn btn-success btn-sm font-weight-bold' %>
+    <button class='btn btn-outline-success btn-sm font-weight-bold'><%= render "users/shared/links" %></button>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+
+</div>
+</div>
+</div>

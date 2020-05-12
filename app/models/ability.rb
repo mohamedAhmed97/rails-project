@@ -9,6 +9,7 @@ class Ability
     
         if user.present?  # additional permissions for logged in users 
           can :read, Product
+          can :manage, Search
           can :manage, Cart, user_id: user.id         
           # can :read, Cart
           # can :update, Cart
