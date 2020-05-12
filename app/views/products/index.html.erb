@@ -12,13 +12,16 @@
       <div class='col-md-3'>
       <div class='card p-2'>
        <div class="card-body p-2">
-        <h3><%= product.title %></h3><br />
-        <div>Description: <%= sanitize(product.description) %></div><br />
-        <div>Brand: <%= sanitize(product.brand.name) %></div><br />
-        <div>Category: <%= sanitize(product.category.name) %></div><br />
-        <div>Price: <%= number_to_currency(product.price) %></div><br />
+        <h3 class="font-weight-bold"><%= product.title %></h3><br />
+        <div style="width: 150px; height: 150px; object-fit: cover;">
+        <%= link_to image_tag(product.image, style:"width:100%", class: "img-responsive"), products_path %>
+        </div><br />
+        <div class="mt-5 font-weight-bold">Description: <%= sanitize(product.description) %></div><br />
+        <div class="font-weight-bold">Brand: <%= sanitize(product.brand.name) %></div><br />
+        <div class="font-weight-bold">Category: <%= sanitize(product.category.name) %></div><br />
+        <div class="font-weight-bold">Price: <%= number_to_currency(product.price) %></div><br />
         <div><%= link_to 'Show Details', product_path(product), 
-        class: 'btn btn-info btn-sm float-right'%></div>
+        class: 'btn btn-info btn-sm float-right font-weight-bold'%></div>
         <% if can? :manage ,product%>
         <div><%= link_to 'Edit', edit_product_path(product) %></div>
         <div><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -29,9 +32,10 @@
           <%= f.hidden_field :product_id, :value => product.id %>
           <%= f.number_field :quantity, style: "width:50px !important;" , :value => 1, :min =>  1%>
           <% if current_user %>
-            <%= f.submit "Add to Cart ", class: 'btn btn-success btn-sm'%>
+            <%= f.submit "Add to Cart ", class: 'btn btn-success btn-sm v'%>
           <% else %>
-           <%= link_to "Add to Cart", new_user_registration_path , :class => 'btn btn-success btn-sm' %>
+           <%= link_to "Add to Cart", new_user_registration_path , 
+           :class => 'btn btn-success btn-sm font-weight-bold' %>
           <% end %>  
         <% end %>
           
