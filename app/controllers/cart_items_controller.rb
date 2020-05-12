@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+    before_action :current_user, only: [:create, :destroy]
 
     def create
         @cart = current_cart
