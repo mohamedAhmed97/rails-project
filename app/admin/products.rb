@@ -5,6 +5,7 @@ ActiveAdmin.register Product do
       f.input :title
       f.input :price
       f.input :description
+      f.input :store_id, :as => :select, :collection => Store.all.collect {|store| [store.name, store.id] }
       f.input :brand_id, :as => :select, :collection => Brand.all.collect {|brand| [brand.name, brand.id] }
       f.input :category_id, :as => :select, :collection => Category.all.collect {|category| [category.name, category.id] }
       f.input :image, as: :file
@@ -34,7 +35,7 @@ ActiveAdmin.register Product do
     
 
     def product_params
-      params.require(:product).permit(:title, :image, :price, :description, :brand_id, :category_id)
+      params.require(:product).permit(:title, :image, :price, :description, :brand_id, :category_id, :store_id)
     end
 
   end   
