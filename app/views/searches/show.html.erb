@@ -1,4 +1,8 @@
-<h1>Search Results</h1>
+<div class="text-center">
+<h1>Search Results</h1
+<a><%= link_to 'Back To Home', products_path, class:'btn btn-warning' %></a>
+</div>
+
 
 <% if @search.find_products.empty? %>
     <p>No Records Found</p>
@@ -6,16 +10,20 @@
 <% else %>
     <% @search.find_products.each do |c| %>
         <br>
-        <div class="div">
-        <h3>Title: <%= c.title %></h3>
-        <h4>Description: <%= c.description %></h4>
-        <p>Price: $<%= c.price %></p>
-        <p>Category: <%= c.category_id %></p>
-        <p>Brand: <%= c.brand_id %></p>
+        <div class="container">
+        <div class="row border border-info">
+        <div class="col-md-3">
+            <div>Title: <%= c.title %></div>
+            <div>Description: <%= c.description %></div>
+            <div>Price: $<%= c.price %></div>
+            <div>Category: <%= c.category.name %></div>
+            <div>Brand: <%= c.brand.name %></div>
+            </div>
+        </div>
         </div>
     <% end %>
 <% end %>
 
 
-<a><%= link_to 'Back To Home', products_path %></a>
+
 

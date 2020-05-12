@@ -5,13 +5,13 @@
 <%= link_to 'New Product', new_product_path %>
 <% end %>
 
-
+<div class='container-fluid'>
 <% @products.in_groups_of(4, false).each do |group| %>
   <div class='row border border-info'>
     <% group.each do |product| %>
       <div class='col-md-3'>
-      <div class='card'>
-       <div class="card-body">
+      <div class='card p-2'>
+       <div class="card-body p-2">
         <h3><%= product.title %></h3><br />
         <div>Description: <%= sanitize(product.description) %></div><br />
         <div>Brand: <%= sanitize(product.brand.name) %></div><br />
@@ -35,11 +35,8 @@
     <% end %>
   </div>
 <% end %>
+</div>
 
 <br>
-<%if user_signed_in?%>
-<div id="cart">
-  <%= render 'carts/cart'%>
-</div>
-<% end %>
+
 

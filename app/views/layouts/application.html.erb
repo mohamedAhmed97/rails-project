@@ -23,6 +23,11 @@
     <% end %>
   <% end %>
   </form>
+  <%if user_signed_in?%>
+    <div id="cart" class='btn btn-warning'>
+    <%= render 'carts/cart'%>
+  </div>
+  <% end %>
     <div style="padding-left: 10px;">
     <% if current_user %>
       <button class="btn btn-outline-danger" type="button">

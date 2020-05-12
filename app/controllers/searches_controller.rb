@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+    load_and_authorize_resource param_method: :search_params
     def new
         @search = Search.new
         
